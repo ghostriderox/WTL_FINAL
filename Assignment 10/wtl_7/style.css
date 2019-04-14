@@ -1,0 +1,12 @@
+.btn {
+    margin: 6px;
+}
+.calc {
+    margin: auto;
+    height: auto;
+    width: 20%;
+    border: grey solid 6px;
+    border-radius: 5px;
+    padding: 10px;
+    
+}

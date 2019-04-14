@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Food</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            label{
+                height:30px;
+                letter-spacing: 2px;
+                font-size: 18px;
+                width: 100%;	}
+            input
+            {
+              
+                height:30px;
+                font-size: 18px;
+            }
+
+            .form1
+            {
+                display: block;
+                width:50%;
+                border: 1px;
+                padding: 5px;
+                margin: 3px;
+                border: 2px solid gray;
+                border-radius: 5px;
+            }
+            .btn1
+            {
+                height: 30px;
+                margin: 5px;
+                padding: 8px;
+                font-weight: bold;
+                background-color: #4CAF50;
+                color: white;
+
+            }
+            h1
+            {
+                color: #000;
+            }
+            </style>
+            </head>
+            <body>
+            
+              <div align="center">
+                <h3>Accept Order</h3>
+                
+                <form method="POST" class="form1" action="generateBill.jsp" onchange="return calculateTotal()">
+                    <p>
+                        <div align="left"><label>Customer Name*</label>
+                        <input type="text" name="uname" required/></div>
+                    </p>
+                    <p>
+                        <div align="left"><label>Email Id*</label>
+                        <input type="email" name="email_id" required/></div>
+                    </p>
+                    <h3>Menu</h3>
+                    <table width="100%">
+                        <tr><th>Item Name</th><th>Quantity</th><th>Cost</th><th>Total</th></tr>
+                        <tr>
+                            <td>Burger<input type="hidden" name="itemName" value="Burger"></td>
+                            <td><input type="number" name="itemCount"   placeholder="0" onsubmit="return calculateTotal()"></td>
+                            <td class="itemPrice"><input type="hidden" name="itemPrice" value="25">25</td>
+                            <td><input type="number" name="itemTotal" value="0" placeholder="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Cold Coffee<input type="hidden" name="itemName" value="Cold Coffee"></td>
+                            <td><input type="number" name="itemCount" placeholder="0"></td>
+                            <td class="itemPrice"><input type="hidden" name="itemPrice" value="20">20</td>
+                            <td><input type="number" name="itemTotal" value="0" placeholder="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Samosa<input type="hidden" name="itemName" value="Samosa"></td>
+                            <td><input type="number" name="itemCount" placeholder="0"></td>
+                            <td class="itemPrice"><input type="hidden" name="itemPrice" value="20">20</td>
+                            <td><input type="number" name="itemTotal" value="0" placeholder="0"></td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td><input type="number" name="total" id="total" placeholder="0"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>                            
+                            <td ><input type="submit" name="submit" value="Place Order"></td>
+                        </tr>
+                    </table>
+                    <label id="msglabel"></label>
+           			<p align=left>*Required Fields.</p>
+            </form>
+            <form action="index.html">
+            <button type=submit>RESET</button>
+            </form>
+                </div>
+                <script>
+                
+                function calculateTotal()
+                    
+                    {	
+                	var itemPs=document.getElementsByClassName("itemPrice");
+        	    	for(var i=0;i<itemPs.length;i++)
+                    {
+        	    	var itemqt=parseInt(document.getElementsByName("itemCount")[i].value);
+        	    	
+        	    	}
+                   
+                       var final=0;
+                        for(var i=0;i<itemPs.length;i++)
+                        {
+                            var cost=parseInt(document.getElementsByName("itemPrice")[i].value);
+                            
+                            var quantity=parseInt(document.getElementsByName("itemCount")[i].value);
+                            if(quantity<0)
+            	    		{
+            	    		alert( "Enter valid quantity");
+        	                return false;
+            	    		}
+                           var total=cost*quantity;
+                           final=final+total;
+                            document.getElementsByName("itemTotal")[i].value=total;
+                        	
+                        }
+                        document.getElementById("total").value=final;
+                        return true;
+                    }
+                    </script>
+            </body>
+            </html>
